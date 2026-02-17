@@ -4,56 +4,90 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>إسماعيل الثقفي | مستقبل العطور الرقمي</title>
+<title>Ismail Althagafi | The Future of Scent</title>
 <link href="" rel="stylesheet">
 <style>
-:root { --gold: #d4af37; --black: #050505; --dark-grey: #1a1a1a; --transition: 0.4s; }
-body { font-family: 'Cairo', sans-serif; background-color: var(--black); color: white; margin: 0; overflow-x: hidden; text-align: center; }
-.hero { height: 50vh; display: flex; flex-direction: column; justify-content: center; align-items: center; background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%); border-bottom: 1px solid #333; padding: 20px; }
-h1 { font-size: 3rem; font-weight: 900; background: linear-gradient(to right, #fff, var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 0; }
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; padding: 40px 20px; max-width: 1200px; margin: auto; }
-.feature-node { background: var(--dark-grey); border: 1px solid #333; padding: 30px; border-radius: 20px; cursor: pointer; transition: var(--transition); }
-.feature-node:hover { border-color: var(--gold); transform: scale(1.05); }
-.feature-node h3 { color: var(--gold); }
-.details-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 1000; justify-content: center; align-items: center; padding: 20px; }
-.details-content { background: #1a1a1a; border: 2px solid var(--gold); padding: 40px; border-radius: 20px; max-width: 600px; width: 100%; position: relative; text-align: right; }
-.close-btn { background: var(--gold); border: none; padding: 5px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; margin-bottom: 20px; }
-.invest-footer { background: var(--gold); color: black; padding: 50px 20px; margin-top: 50px; border-top-left-radius: 50px; border-top-right-radius: 50px; }
-.contact-btn { display: inline-block; padding: 15px 40px; background: black; color: white; text-decoration: none; border-radius: 50px; font-weight: bold; margin-top: 20px; }
+:root { --gold: #c5a059; --black: #050505; --bg-gradient: radial-gradient(circle at 50% 50%, #1a1a1a 0%, #050505 100%); }
+body { font-family: 'Cairo', sans-serif; background: var(--black); color: white; margin: 0; overflow-x: hidden; scroll-behavior: smooth; }
+.bg-glow { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-gradient); z-index: -1; }
+.spotlight { position: fixed; width: 600px; height: 600px; background: radial-gradient(circle, rgba(197, 160, 89, 0.05) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; transition: 0.1s; }
+header { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; }
+.badge { border: 1px solid var(--gold); color: var(--gold); padding: 5px 20px; border-radius: 50px; font-size: 0.8rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; opacity: 0.8; }
+h1 { font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; margin: 0; letter-spacing: -2px; line-height: 1; color: #fff; }
+h1 span { color: var(--gold); text-shadow: 0 0 30px rgba(197, 160, 89, 0.3); }
+.hero-p { font-size: 1.2rem; color: #888; max-width: 600px; margin-top: 20px; font-weight: 200; }
+.interactive-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; padding: 100px 5%; max-width: 1400px; margin: auto; }
+.glass-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05); padding: 40px; border-radius: 30px; cursor: pointer; transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.glass-card:hover { background: rgba(197, 160, 89, 0.05); border-color: var(--gold); transform: translateY(-10px); }
+.glass-card h3 { color: var(--gold); font-size: 1.5rem; margin-bottom: 10px; }
+.modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 9999; justify-content: center; align-items: center; }
+.modal-content { max-width: 800px; width: 90%; background: #0a0a0a; border: 1px solid var(--gold); border-radius: 40px; padding: 60px; position: relative; text-align: right; }
+.close-modal { position: absolute; top: 30px; left: 30px; background: none; border: 1px solid #333; color: #666; padding: 10px 20px; border-radius: 50px; cursor: pointer; }
+.cta-section { text-align: center; padding: 150px 20px; background: linear-gradient(to bottom, transparent, #0a0a0a); }
+.gold-button { display: inline-block; padding: 25px 60px; background: var(--gold); color: black; text-decoration: none; border-radius: 100px; font-weight: 900; font-size: 1.2rem; box-shadow: 0 10px 40px rgba(197, 160, 89, 0.3); }
 </style>
 </head>
 <body>
-<section class="hero">
-<h1>الابتكار الرقمي للعطور</h1>
-<p style="color: #888; font-size: 1.2rem;">عرض تفاعلي للاستحواذ والشراكة - إسماعيل الثقفي</p>
+<div class="bg-glow"></div>
+<div class="spotlight" id="spotlight"></div>
+<header>
+<div class="badge">Innovation & Acquisition</div>
+<h1>Smart <span>AI</span> Perfume</h1>
+<p class="hero-p">نظام زجاجة العطور الذكية | ابتكار هندسي محمي ببراءة اختراع لإعادة تعريف صناعة العطور الفاخرة.</p>
+<p style="margin-top: 10px; font-weight: bold; color: var(--gold);">إسماعيل الثقفي</p>
+</header>
+<div class="interactive-grid">
+<div class="glass-card" onclick="openModal('problem')">
+<h3>المشكلة السوقية</h3>
+<p>لماذا يحتاج العالم لهذا الابتكار الآن؟ تحديات الهدر والتخصيص في السوق الحالي.</p>
+</div>
+<div class="glass-card" onclick="openModal('tech')">
+<h3>التميز التقني</h3>
+<p>الدقة الميكرومترية (±0.05 مل) وخوارزميات مواءمة السياق والمزاج.</p>
+</div>
+<div class="glass-card" onclick="openModal('business')">
+<h3>نموذج الإيرادات</h3>
+<p>كيف يحقق المشروع عوائد مليارية؟ الاشتراكات، التراخيص، والبيانات.</p>
+</div>
+<div class="glass-card" onclick="openModal('legal')">
+<h3>الوضع القانوني</h3>
+<p>تفاصيل الحماية الفكرية لدى SAIP وجاهزية الترخيص التجاري.</p>
+</div>
+</div>
+<section class="cta-section">
+<a href="mailto:ismail.althagafi92@gmail.com" class="gold-button">طلب ملف الاستثمار (PITCH DECK)</a>
+<div style="margin-top: 40px; color: #444; font-family: sans-serif;">
+ISMAIL.ALTHAGAFI92@GMAIL.COM 
+
+
+ +966 510 150 055
+</div>
 </section>
-<div class="grid">
-<div class="feature-node" onclick="show('p')"><h3>الدقة المتناهية</h3><p>نظام ضخ رقمي (±0.05 مل)</p></div>
-<div class="feature-node" onclick="show('a')"><h3>ذكاء Mood-Match</h3><p>خوارزمية مواءمة المزاج</p></div>
-<div class="feature-node" onclick="show('b')"><h3>القيمة السوقية</h3><p>تحليل البيانات والولاء</p></div>
-<div class="feature-node" onclick="show('l')"><h3>الحماية القانونية</h3><p>الملكية الفكرية والحقوق</p></div>
-</div>
-<div id="overlay" class="details-overlay" onclick="hide()">
-<div class="details-content" onclick="event.stopPropagation()">
-<button class="close-btn" onclick="hide()">إغلاق X</button>
-<div id="content"></div>
+<div id="modal" class="modal" onclick="closeModal()">
+<div class="modal-content" onclick="event.stopPropagation()">
+<button class="close-modal" onclick="closeModal()">BACK TO VISION</button>
+<div id="modal-body"></div>
 </div>
 </div>
-<section class="invest-footer">
-<h2>جاهز للتفاوض؟</h2>
-<p>التقنية معروضة للاستحواذ الكامل أو الترخيص الحصري.</p>
-<a href="mailto:ismail.althagafi92@gmail.com" class="contact-btn">اطلب عرض الاستثمار</a>
-<p style="margin-top:20px; font-weight:bold;">📞 966510150055+ | 📧 ismail.althagafi92@gmail.com</p>
-</section>
 <script>
-const data = {
-p: '<h2>الدقة الرقمية</h2><ul><li>خلط 12 عنصراً لإنتاج 4,095 رائحة.</li><li>دقة ضخ تصل إلى 0.05 مل تمنع الهدر تماماً.</li><li>معايرة ثابتة ومضمونة برمجياً.</li></ul>',
-a: '<h2>الذكاء الاصطناعي</h2><ul><li>تحليل الحالة المزاجية والطقس آلياً.</li><li>توصيات مخصصة بناءً على المكان والزمان.</li><li>تطبيق ذكي سهل الاستخدام للتحكم الكامل.</li></ul>',
-b: '<h2>لماذا هذا الابتكار؟</h2><ul><li>نموذج عمل يعتمد على الخراطيش (دفع مستمر).</li><li>بيانات دقيقة عن توجهات المستهلكين العطرية.</li><li>تقليل تكاليف التوزيع التقليدية بنسبة 40%.</li></ul>',
-l: '<h2>الوضع القانوني</h2><ul><li>مسجل لدى الهيئة السعودية للملكية الفكرية.</li><li>حماية شاملة للميكانيكا، البرمجيات، والـ RFID.</li><li>الحقوق مملوكة بالكامل للمخترع إسماعيل الثقفي.</li></ul>'
+const spotlight = document.getElementById('spotlight');
+window.addEventListener('mousemove', e => {
+spotlight.style.left = e.clientX - 300 + 'px';
+spotlight.style.top = e.clientY - 300 + 'px';
+});
+const content = {
+problem: &lt;h2&gt;المشكلة والحل&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;المستهلك يضطر لشراء عدة زجاجات عطور لمناسبات مختلفة.&lt;/li&gt;&lt;li&gt;الحل: جهاز واحد يوفر آلاف التركيبات العطرية فورياً عبر خراطيش ذكية.&lt;/li&gt;&lt;/ul&gt;,
+tech: &lt;h2&gt;التكنولوجيا الفائقة&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;12 خرطوشة أساسية تنتج +4,000 رائحة فريدة بدقة خلط (±0.05 مل).&lt;/li&gt;&lt;li&gt;تجانس فوري باستخدام تقنيات الموجات فوق الصوتية.&lt;/li&gt;&lt;/ul&gt;,
+business: &lt;h2&gt;الفرصة الاستثمارية&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;نموذج عوائد مستمر (Subscription Model) عبر إعادة تعبئة الخراطيش.&lt;/li&gt;&lt;li&gt;بيانات ضخمة عن ذوق المستهلكين تساعد الشركات في التوسع الاستراتيجي.&lt;/li&gt;&lt;/ul&gt;,
+legal: &lt;h2&gt;الملكية الفكرية&lt;/h2&gt;&lt;ul&gt;&lt;li&gt;طلب براءة اختراع مودع رسمياً وبانتظار الفحص لدى الهيئة السعودية.&lt;/li&gt;&lt;li&gt;الابتكار جاهز تماماً لمفاوضات الاستحواذ أو الترخيص الحصري.&lt;/li&gt;&lt;/ul&gt;
 };
-function show(k) { document.getElementById('content').innerHTML = data[k]; document.getElementById('overlay').style.display = 'flex'; }
-function hide() { document.getElementById('overlay').style.display = 'none'; }
+function openModal(id) {
+document.getElementById('modal-body').innerHTML = content[id];
+document.getElementById('modal').style.display = 'flex';
+}
+function closeModal() {
+document.getElementById('modal').style.display = 'none';
+}
 </script>
 </body>
 </html>
