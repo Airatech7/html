@@ -14,6 +14,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'IBM Plex Sans Arabic', sans-serif;
             background-color: var(--matte-black);
@@ -22,151 +23,200 @@
             line-height: 1.6;
         }
 
-        .hero-container {
-            position: relative;
+        /* الخلفية الثابتة */
+        .page-bg {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--matte-black);
+            z-index: -3;
+        }
+
+        /* الإضاءة الانسيابية التي ترافقك عند النزول */
+        .ambient-glow {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 300%; 
+            background: 
+                radial-gradient(circle at 50% 10%, rgba(15, 23, 42, 0.9) 0%, transparent 40%),
+                radial-gradient(circle at 80% 40%, rgba(200, 164, 93, 0.04) 0%, transparent 30%),
+                radial-gradient(circle at 20% 70%, rgba(15, 23, 42, 0.7) 0%, transparent 40%),
+                radial-gradient(circle at 50% 90%, rgba(200, 164, 93, 0.03) 0%, transparent 30%);
+            z-index: -2;
+            pointer-events: none;
+        }
+
+        header {
             height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            overflow: hidden;
-            background: radial-gradient(circle at center, var(--deep-navy) 0%, var(--matte-black) 100%);
+            padding: 0 10%;
         }
-
-        #canvas-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
-
-        .content-layer { position: relative; z-index: 10; opacity: 0; transform: translateY(30px); animation: reveal 1.5s ease-out forwards; }
-        @keyframes reveal { to { opacity: 1; transform: translateY(0); } }
 
         .badge {
             display: inline-block;
             border: 1px solid var(--soft-gold);
             color: var(--soft-gold);
-            padding: 8px 25px;
-            font-size: 0.85rem;
+            padding: 12px 30px;
+            font-size: 0.9rem;
             letter-spacing: 2px;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             font-weight: 700;
             text-transform: uppercase;
+            line-height: 1.6;
+            background: rgba(200, 164, 93, 0.03);
         }
 
-        h1 { font-family: 'Inter', sans-serif; font-size: clamp(3rem, 10vw, 7rem); font-weight: 900; line-height: 0.9; margin-bottom: 25px; letter-spacing: -4px; }
-        h1 span { background: linear-gradient(180deg, #fff, var(--soft-gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .patent-num {
+            display: block;
+            font-size: 0.75rem;
+            opacity: 0.8;
+            font-weight: 400;
+            margin-top: 5px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        h1 { 
+            font-family: 'Inter', sans-serif; 
+            font-size: clamp(3rem, 10vw, 7rem); 
+            font-weight: 900; 
+            line-height: 0.85; 
+            margin-bottom: 25px; 
+            letter-spacing: -4px; 
+        }
+        
+        h1 span { 
+            background: linear-gradient(180deg, #fff 40%, var(--soft-gold) 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
 
         .hero-p { font-size: 1.5rem; color: #94A3B8; max-width: 800px; font-weight: 300; margin: 0 auto; }
 
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; padding: 100px 10% 50px; max-width: 1500px; margin: auto; }
-        .card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 50px; transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1); text-align: right; cursor: pointer; }
-        .card:hover { background: rgba(200, 164, 93, 0.05); border-color: var(--soft-gold); transform: translateY(-10px); }
-        .card h3 { color: var(--soft-gold); font-size: 1.8rem; margin-bottom: 15px; }
+        .grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; 
+            padding: 100px 10% 50px; 
+            max-width: 1500px; 
+            margin: auto; 
+            position: relative;
+        }
 
-        /* منطقة أزرار التواصل أسفل الكروت */
-        .contact-actions { text-align: center; padding: 40px 20px 100px; }
+        .card { 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255, 255, 255, 0.05); 
+            padding: 60px; 
+            transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1); 
+            text-align: right; 
+            cursor: pointer; 
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .card:hover { 
+            background: rgba(200, 164, 93, 0.05); 
+            border-color: var(--soft-gold); 
+            transform: translateY(-10px); 
+        }
+
+        .card h3 { color: var(--soft-gold); font-size: 1.8rem; margin-bottom: 15px; font-weight: 700; }
+
+        .contact-actions { text-align: center; padding: 60px 20px 140px; }
+        
         .action-btn {
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
-            padding: 20px 40px;
+            padding: 22px 50px;
             background: transparent;
             border: 1px solid var(--soft-gold);
             color: var(--soft-gold);
             text-decoration: none;
             font-weight: 700;
             transition: 0.4s;
-            margin: 10px;
-            min-width: 250px;
+            margin: 12px;
+            min-width: 280px;
+            letter-spacing: 1px;
+            font-size: 1.1rem;
         }
-        .action-btn:hover { background: var(--soft-gold); color: var(--matte-black); box-shadow: 0 0 30px rgba(200, 164, 93, 0.3); }
 
-        footer { padding: 40px; text-align: center; background: var(--matte-black); border-top: 1px solid rgba(255, 255, 255, 0.05); }
-        .copyright { font-size: 0.8rem; color: #555; letter-spacing: 1px; }
+        .action-btn:hover { 
+            background: var(--soft-gold); 
+            color: var(--matte-black); 
+            box-shadow: 0 0 40px rgba(200, 164, 93, 0.2); 
+        }
 
-        /* منع المتصفح من تغيير لون الأرقام */
-        a[href^="tel"] { color: inherit; text-decoration: none; }
+        footer { 
+            padding: 80px 40px; 
+            text-align: center; 
+            border-top: 1px solid rgba(255, 255, 255, 0.05); 
+            background: rgba(0,0,0,0.2);
+        }
 
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 13, 16, 0.99); z-index: 1000; justify-content: center; align-items: center; }
-        .modal { background: var(--deep-navy); border: 1px solid var(--soft-gold); padding: 60px; max-width: 700px; width: 90%; text-align: right; }
+        .copyright { font-size: 0.9rem; color: #444; letter-spacing: 1px; }
+
+        a[href^="tel"], a[href^="mailto"] { color: inherit !important; text-decoration: none !important; }
+
+        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 13, 16, 0.99); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(15px); }
+        .modal { background: var(--deep-navy); border: 1px solid var(--soft-gold); padding: 60px; max-width: 700px; width: 90%; text-align: right; position: relative; }
     </style>
 </head>
 <body>
 
-    <section class="hero-container">
-        <canvas id="canvas-bg"></canvas>
-        <div class="content-layer">
-            <div class="badge">SAUDI PATENT PENDING</div>
-            <h1>FUTURE <span>SCENT</span></h1>
-            <p class="hero-p">زجاجة عطر واحدة، آلاف الإمكانيات. ابتكار المهندس إسماعيل الثقفي لإعادة تعريف التجربة الحسية عبر تقنيات المزج الذكية.</p>
+    <div class="page-bg"></div>
+    <div class="ambient-glow"></div>
+
+    <header>
+        <div class="badge">
+            SAUDI PATENT PENDING
+            <span class="patent-num">APPLICATION NO: SA 1020261391</span>
         </div>
-    </section>
+        <h1>FUTURE <span>SCENT</span></h1>
+        <p class="hero-p">زجاجة عطر واحدة، آلاف الإمكانيات. ابتكار المهندس إسماعيل الثقفي لإعادة تعريف التجربة الحسية عبر تقنيات المزج الذكية.</p>
+    </header>
 
     <div class="grid">
         <div class="card" onclick="openM('v')">
             <h3>الرؤية</h3>
-            <p>تحويل العطور إلى تجربة تفاعلية رقمية تتناغم مع محيطك.</p>
+            <p>تحويل العطور من سائل ساكن إلى نظام تفاعلي يتناغم مع هوية المستخدم ومحيطه.</p>
         </div>
         <div class="card" onclick="openM('t')">
             <h3>التقنية</h3>
-            <p>نظام ضخ ميكرومترية فائق الدقة محمي ببراءة اختراع سعودية.</p>
+            <p>نظام ضخ ميكرومترية فائق الدقة محمي ببراءة اختراع، يضمن دقة الخلط واستدامة الجودة.</p>
         </div>
         <div class="card" onclick="openM('i')">
             <h3>الاستثمار</h3>
-            <p>فرصة استثنائية في سوق عالمي، بابتكار يملك كامل حقوق الملكية الفكرية.</p>
+            <p>فرصة استراتيجية في سوق العطور العالمي، بابتكار سعودي موثق ومحمي قانونياً بالكامل.</p>
         </div>
     </div>
 
     <div class="contact-actions">
-        <a href="mailto:ismail.althagafi92@gmail.com" class="action-btn">
-            <span>طلب ملف الاستثمار (Email)</span>
-        </a>
-        <a href="tel:+966510150055" class="action-btn">
-            <span>تواصل مباشرة (Call)</span>
-        </a>
+        <a href="mailto:ismail.althagafi92@gmail.com" class="action-btn">طلب ملف الاستثمار (Email)</a>
+        <a href="tel:+966510150055" class="action-btn">تواصل مباشرة (Call)</a>
     </div>
 
     <footer>
         <div class="copyright">
-            حقوق الملكية الفكرية محفوظة © 2026 | إسماعيل إبراهيم الثقفي
+            جميع الحقوق محفوظة © 2026 | إسماعيل إبراهيم الثقفي
+            <br>
+            <span style="font-size: 0.7rem; opacity: 0.5;">SA 1020261391</span>
         </div>
     </footer>
 
     <div id="overlay" class="overlay" onclick="closeM()">
         <div class="modal" onclick="event.stopPropagation()">
             <div id="m-body"></div>
-            <p style="margin-top: 40px; color: var(--soft-gold); cursor: pointer;" onclick="closeM()">العودة للتجربة ←</p>
+            <p style="margin-top: 40px; color: var(--soft-gold); cursor: pointer; font-weight: 700;" onclick="closeM()">← العودة للرئيسية</p>
         </div>
     </div>
 
     <script>
-        const canvas = document.getElementById('canvas-bg');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        function init() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-            particles = [];
-            for(let i=0; i<80; i++) {
-                particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, size: Math.random() * 1.5, speedX: Math.random() * 0.3 - 0.15, speedY: Math.random() * 0.3 - 0.15 });
-            }
-        }
-        function animate() {
-            ctx.clearRect(0,0,canvas.width, canvas.height);
-            ctx.fillStyle = "rgba(200, 164, 93, 0.15)";
-            particles.forEach(p => {
-                p.x += p.speedX; p.y += p.speedY;
-                if(p.x > canvas.width) p.x = 0; if(p.y > canvas.height) p.y = 0;
-                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
-            });
-            requestAnimationFrame(animate);
-        }
-        window.addEventListener('resize', init);
-        init(); animate();
-
         const content = {
-            v: "<h2>رؤية عالمية</h2><br><p>ابتكار يهدف لدمج الذكاء الاصطناعي في قطاع العطور الفاخرة، لتوفير تجربة مخصصة لكل مستخدم بناءً على بصمته العطرية.</p>",
-            t: "<h2>هندسة الدقة</h2><br><p>يعتمد الاختراع على صمامات نانوية تتحكم في خروج السوائل العطرية بدقة تناهز 0.05 مل، مما يضمن ثبات الجودة في كل رشة.</p>",
-            i: "<h2>جاهزية الشراكة</h2><br><p>المشروع متاح الآن للمستثمرين الراغبين في ريادة سوق العطور الذكية، مع توفر كافة المستندات القانونية وبراءة الاختراع.</p>"
+            v: "<h2>الرؤية الاستراتيجية</h2><br><p>يهدف الابتكار إلى قيادة التحول الرقمي في صناعة العطور، من خلال دمج تقنيات التعلم الآلي لتوفير روائح تتغير لحظياً بناءً على العوامل الخارجية والداخلية للمستخدم.</p>",
+            t: "<h2>الهندسة والابتكار</h2><br><p>تعتمد التقنية المسجلة برقم SA 1020261391 على ميكانيكا دقيقة تمنع الأكسدة وتضمن بقاء المكونات العطرية في أنقى صورها، مع إمكانية الوصول لأكثر من 4000 مزيج مختلف.</p>",
+            i: "<h2>المسار الاستثماري</h2><br><p>نحن الآن في مرحلة العرض للمستثمرين الملائكيين وصناديق رأس المال الجريء، مع توفر نموذج عمل واضح يعتمد على بيع الأجهزة واشتراكات توريد المواد الأساسية.</p>"
         };
         function openM(k) { document.getElementById('m-body').innerHTML = content[k]; document.getElementById('overlay').style.display = 'flex'; }
         function closeM() { document.getElementById('overlay').style.display = 'none'; }
