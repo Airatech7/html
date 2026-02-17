@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="format-detection" content="telephone=no">
-    <title>إسماعيل الثقفي | عطور المستقبل</title>
+    <title>إسماعيل الثقفي | FUTURE SCENT</title>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;600;700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -15,200 +15,185 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        
         body {
             font-family: 'IBM Plex Sans Arabic', sans-serif;
             background-color: var(--matte-black);
             color: var(--off-white);
             overflow-x: hidden;
             line-height: 1.6;
-            -webkit-text-size-adjust: 100%;
         }
 
+        /* الخلفية والرشات */
         .page-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--matte-black); z-index: -4; }
         #canvas-particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3; pointer-events: none; }
-        .ambient-glow { position: absolute; top: 0; left: 0; width: 100%; height: 300%; background: radial-gradient(circle at 50% 10%, rgba(15, 23, 42, 0.9) 0%, transparent 40%), radial-gradient(circle at 80% 40%, rgba(200, 164, 93, 0.04) 0%, transparent 30%), radial-gradient(circle at 20% 70%, rgba(15, 23, 42, 0.7) 0%, transparent 40%); z-index: -2; pointer-events: none; }
+        .ambient-glow { position: absolute; top: 0; left: 0; width: 100%; height: 300%; background: radial-gradient(circle at 50% 10%, rgba(15, 23, 42, 0.9) 0%, transparent 40%), radial-gradient(circle at 80% 40%, rgba(200, 164, 93, 0.04) 0%, transparent 30%); z-index: -2; pointer-events: none; }
 
         header {
-            height: 90vh; /* تقليل الارتفاع قليلاً لتقريب المسافة */
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            padding: 100px 10% 50px;
+            text-align: right;
+        }
+
+        .hero-text { flex: 1; min-width: 350px; }
+        .hero-visual {
+            flex: 1;
+            min-width: 350px;
+            display: flex;
             justify-content: center;
             align-items: center;
-            text-align: center;
-            padding: 0 10%;
+            perspective: 1000px;
         }
+
+        /* تصميم افتراضي للزجاجة الذكية يحاكي اختراعك */
+        .smart-bottle {
+            width: 180px;
+            height: 320px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+            border: 1px solid rgba(200, 164, 93, 0.3);
+            border-radius: 20px;
+            position: relative;
+            box-shadow: 0 0 50px rgba(200, 164, 93, 0.1);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .bottle-core {
+            position: absolute;
+            top: 20%; left: 10%; width: 80%; height: 60%;
+            background: repeating-linear-gradient(90deg, transparent 0, transparent 20%, rgba(200, 164, 93, 0.1) 21%, rgba(200, 164, 93, 0.1) 25%);
+            border-radius: 10px;
+            display: flex; justify-content: space-around; align-items: flex-end; padding: 10px;
+        }
+
+        /* تمثيل للخراطيش الملونة داخل الزجاجة */
+        .cartridge { width: 15%; height: 60%; border-radius: 5px; opacity: 0.6; box-shadow: 0 0 15px rgba(255,255,255,0.1); }
+        .c1 { background: #ff4d4d; height: 80%; }
+        .c2 { background: #4dff88; height: 70%; }
+        .c3 { background: #4d94ff; height: 90%; }
+        .c4 { background: #ffd44d; height: 65%; }
+
+        @keyframes float { 0%, 100% { transform: translateY(0) rotateY(0); } 50% { transform: translateY(-20px) rotateY(10deg); } }
 
         .badge {
             display: inline-block;
             border: 1px solid var(--soft-gold);
             color: var(--soft-gold);
-            padding: 12px 30px;
-            font-size: 0.9rem;
-            letter-spacing: 2px;
+            padding: 12px 25px;
+            font-size: 0.85rem;
             margin-bottom: 25px;
             font-weight: 700;
-            background: rgba(200, 164, 93, 0.03);
         }
 
-        .patent-num { display: block; font-size: 0.75rem; opacity: 0.8; font-weight: 400; margin-top: 5px; font-family: 'Inter', sans-serif; }
-
-        h1 { font-family: 'Inter', sans-serif; font-size: clamp(2.8rem, 9vw, 6.5rem); font-weight: 900; line-height: 0.9; margin-bottom: 20px; letter-spacing: -3px; }
+        h1 { font-family: 'Inter', sans-serif; font-size: clamp(2.5rem, 8vw, 5rem); font-weight: 900; line-height: 1; margin-bottom: 20px; }
         h1 span { background: linear-gradient(180deg, #fff 40%, var(--soft-gold) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        .hero-p { font-size: clamp(1.1rem, 4vw, 1.5rem); color: #94A3B8; max-width: 800px; font-weight: 300; margin: 0 auto; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; padding: 20px 10% 80px; max-width: 1400px; margin: auto; }
+        .card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); padding: 40px; backdrop-filter: blur(10px); text-align: right; transition: 0.3s; }
+        .card:hover { border-color: var(--soft-gold); }
 
-        .grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 25px; 
-            padding: 40px 10% 40px; /* تقليل المسافة العلوية لتقريبها من الهيدر */
-            max-width: 1400px; 
-            margin: auto; 
-        }
-
-        .card { 
-            background: rgba(255, 255, 255, 0.02); 
-            border: 1px solid rgba(255, 255, 255, 0.05); 
-            padding: 45px; 
-            transition: 0.4s ease; 
-            text-align: right; 
-            cursor: pointer; 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-        }
-
-        .card:hover { border-color: var(--soft-gold); transform: translateY(-5px); }
-        .card h3 { color: var(--soft-gold); font-size: 1.6rem; margin-bottom: 12px; font-weight: 700; }
-
-        .contact-actions { text-align: center; padding: 40px 20px 100px; }
         .action-btn {
             display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px 40px;
-            background: transparent;
+            padding: 18px 35px;
             border: 1px solid var(--soft-gold);
-            color: var(--soft-gold) !important; /* إجبار اللون الذهبي */
+            color: var(--soft-gold) !important;
             text-decoration: none !important;
             font-weight: 700;
-            transition: 0.4s;
             margin: 10px;
-            min-width: 260px;
-            font-size: 1.1rem;
+            min-width: 240px;
+            transition: 0.4s;
+            text-align: center; justify-content: center;
         }
         .action-btn:hover { background: var(--soft-gold); color: var(--matte-black) !important; }
 
-        /* منع الجوال من تلوين الأرقام بالداخل */
-        .action-btn span, footer span { color: inherit; }
-
-        footer { padding: 60px 40px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); }
-        .copyright { font-size: 0.85rem; color: #444; }
-
-        .overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(11, 13, 16, 0.99); z-index: 2000; justify-content: center; align-items: center; backdrop-filter: blur(15px); }
-        .modal { background: var(--deep-navy); border: 1px solid var(--soft-gold); padding: 50px; max-width: 650px; width: 90%; text-align: right; }
+        footer { padding: 60px; text-align: center; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.85rem; color: #444; }
 
         @media (max-width: 768px) {
-            header { height: auto; padding: 100px 5% 50px; }
-            .grid { padding: 20px 5% 40px; }
-            .action-btn { width: 100%; }
+            header { text-align: center; padding-top: 50px; }
+            .hero-visual { margin-top: 50px; order: -1; }
         }
     </style>
 </head>
 <body>
-
     <div class="page-bg"></div>
     <canvas id="canvas-particles"></canvas>
     <div class="ambient-glow"></div>
 
     <header>
-        <div class="badge">
-            SAUDI PATENT PENDING
-            <span class="patent-num">APPLICATION NO: SA 1020261391</span>
+        <div class="hero-text">
+            <div class="badge">
+                SAUDI PATENT PENDING
+                <div style="font-size: 0.7rem; font-weight: 400; opacity: 0.8; font-family: 'Inter';">SA 1020261391</div>
+            </div>
+            <h1>FUTURE <span>SCENT</span></h1>
+            <p style="font-size: 1.3rem; color: #94A3B8; max-width: 600px; margin: 0 auto 30px;">
+                الجيل القادم من العطور الذكية. ابتكار المهندس إسماعيل الثقفي لإعادة تعريف مفهوم المزج اللحظي باستخدام تقنيات ضخ دقيقة.
+            </p>
         </div>
-        <h1>FUTURE <span>SCENT</span></h1>
-        <p class="hero-p">زجاجة عطر واحدة، آلاف الإمكانيات. ابتكار المهندس إسماعيل الثقفي لإعادة تعريف التجربة الحسية عبر تقنيات المزج الذكية.</p>
+        <div class="hero-visual">
+            <div class="smart-bottle">
+                <div style="text-align:center; padding-top:15px; font-size:10px; color:var(--soft-gold); font-family:'Inter'; font-weight:900;">SMART CORE</div>
+                <div class="bottle-core">
+                    <div class="cartridge c1"></div>
+                    <div class="cartridge c2"></div>
+                    <div class="cartridge c3"></div>
+                    <div class="cartridge c4"></div>
+                </div>
+                <div style="position:absolute; bottom:15px; width:100%; text-align:center; font-size:9px; color:rgba(255,255,255,0.2);">POWERED BY AI</div>
+            </div>
+        </div>
     </header>
 
     <div class="grid">
-        <div class="card" onclick="openM('v')">
+        <div class="card">
             <h3>الرؤية</h3>
-            <p>تحويل العطور من سائل ساكن إلى نظام تفاعلي يتناغم مع هوية المستخدم ومحيطه.</p>
+            <p>تخصيص الرائحة لتناسب مزاجك وتغيرات يومك بضغطة زر واحدة.</p>
         </div>
-        <div class="card" onclick="openM('t')">
+        <div class="card">
             <h3>التقنية</h3>
-            <p>نظام ضخ ميكرومترية فائق الدقة محمي ببراءة اختراع، يضمن دقة الخلط واستدامة الجودة.</p>
+            <p>خراطيش قابلة للاستبدال مع نظام مزج كيميائي محمي ببراءة اختراع سعودية.</p>
         </div>
-        <div class="card" onclick="openM('i')">
+        <div class="card">
             <h3>الاستثمار</h3>
-            <p>فرصة استراتيجية في سوق العطور العالمي، بابتكار سعودي موثق ومحمي قانونياً بالكامل.</p>
+            <p>مشروع جاهز للتوسع العالمي مع حماية كاملة للملكية الفكرية رقم SA 1020261391.</p>
         </div>
     </div>
 
-    <div class="contact-actions">
-        <a href="mailto:ismail.althagafi92@gmail.com" class="action-btn">طلب ملف الاستثمار (Email)</a>
-        <a href="tel:+966510150055" class="action-btn"><span>تواصل مباشرة (Call)</span></a>
+    <div style="text-align: center; padding-bottom: 100px;">
+        <a href="mailto:ismail.althagafi92@gmail.com" class="action-btn">طلب ملف الاستثمار</a>
+        <a href="tel:+966510150055" class="action-btn">تواصل مباشرة</a>
     </div>
 
     <footer>
-        <div class="copyright">
-            جميع الحقوق محفوظة © 2026 | إسماعيل إبراهيم الثقفي
-            <br>
-            <span style="font-size: 0.7rem; opacity: 0.5;">SA 1020261391</span>
-        </div>
+        جميع الحقوق محفوظة © 2026 | المهندس إسماعيل إبراهيم الثقفي <br>
+        <span style="opacity: 0.5;">SA 1020261391</span>
     </footer>
-
-    <div id="overlay" class="overlay" onclick="closeM()">
-        <div class="modal" onclick="event.stopPropagation()">
-            <div id="m-body"></div>
-            <p style="margin-top: 40px; color: var(--soft-gold); cursor: pointer; font-weight: 700;" onclick="closeM()">← العودة للرئيسية</p>
-        </div>
-    </div>
 
     <script>
         const canvas = document.getElementById('canvas-particles');
         const ctx = canvas.getContext('2d');
         let particles = [];
-
         function init() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
             particles = [];
-            for(let i=0; i<100; i++) {
-                particles.push({
-                    x: Math.random() * canvas.width,
-                    y: Math.random() * canvas.height,
-                    size: Math.random() * 1.5 + 0.5,
-                    speedX: Math.random() * 0.3 - 0.15,
-                    speedY: Math.random() * 0.3 - 0.15,
-                    opacity: Math.random() * 0.5 + 0.2
-                });
+            for(let i=0; i<80; i++) {
+                particles.push({ x: Math.random()*canvas.width, y: Math.random()*canvas.height, size: Math.random()*1.5+0.5, speedX: Math.random()*0.2-0.1, speedY: Math.random()*0.2-0.1, opacity: Math.random()*0.5+0.2 });
             }
         }
-
         function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.clearRect(0,0,canvas.width, canvas.height);
             particles.forEach(p => {
                 p.x += p.speedX; p.y += p.speedY;
-                if(p.x > canvas.width) p.x = 0; if(p.y > canvas.height) p.y = 0;
-                if(p.x < 0) p.x = canvas.width; if(p.y < 0) p.y = canvas.height;
+                if(p.x > canvas.width) p.x=0; if(p.y > canvas.height) p.y=0;
                 ctx.fillStyle = `rgba(200, 164, 93, ${p.opacity})`;
-                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
+                ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI*2); ctx.fill();
             });
             requestAnimationFrame(animate);
         }
-
         window.addEventListener('resize', init);
         init(); animate();
-
-        const content = {
-            v: "<h2>الرؤية الاستراتيجية</h2><br><p>يهدف الابتكار إلى قيادة التحول الرقمي في صناعة العطور، من خلال دمج تقنيات التعلم الآلي لتوفير روائح تتغير لحظياً.</p>",
-            t: "<h2>الهندسة والابتكار</h2><br><p>التقنية المسجلة برقم SA 1020261391 تضمن دقة خلط تناهز 0.05 مل، مع إمكانية الوصول لأكثر من 4000 مزيج مختلف.</p>",
-            i: "<h2>المسار الاستثماري</h2><br><p>نحن الآن في مرحلة العرض للمستثمرين، مع توفر نموذج عمل واضح يعتمد على بيع الأجهزة واشتراكات توريد المواد الأساسية.</p>"
-        };
-
-        function openM(k) { document.getElementById('m-body').innerHTML = content[k]; document.getElementById('overlay').style.display = 'flex'; }
-        function closeM() { document.getElementById('overlay').style.display = 'none'; }
     </script>
 </body>
 </html>
