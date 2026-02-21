@@ -14,30 +14,24 @@
         :root { --accent: #8b5cf6; --dark: #0a0a0a; --gray: #f8f9fa; }
         body { background: #fff; color: var(--dark); font-family: 'Cairo', sans-serif; transition: 0.3s; }
         
-        /* إخفاء النصوص بناءً على اللغة لمنع التداخل */
         [lang="ar"] .en-text { display: none !important; }
         [lang="en"] .ar-text { display: none !important; }
         [lang="en"] { font-family: 'Inter', sans-serif; }
 
-        /* الشعار الرئيسي في الهيرو */
         .hero-logo-box { text-align: center; }
         .main-logo-img { width: 280px; height: auto; margin: 0 auto; transition: 0.5s; }
         .tagline-purple { color: var(--accent); font-family: 'Inter', sans-serif; font-weight: 300; letter-spacing: 5px; text-transform: uppercase; font-size: 1.2rem; margin-top: 15px; }
 
-        /* Navbar Style */
         .nav-logo-sub { font-family: 'Inter', sans-serif; font-size: 9px; letter-spacing: 2px; color: var(--accent); text-transform: uppercase; font-weight: 700; }
 
-        /* الأيقونات العلوية */
         .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; cursor: pointer; transition: 0.3s; color: #777; }
         .nav-item:hover { color: var(--accent); transform: translateY(-2px); }
         .nav-item i { font-size: 1.3rem; }
-        .nav-item span { font-[10px] font-black uppercase; }
+        .nav-item span { font-size: 10px; font-weight: 900; text-transform: uppercase; }
 
-        /* كروت الأقسام */
         .feature-card { background: var(--gray); border-radius: 35px; padding: 45px; transition: 0.4s; border: 1px solid transparent; }
         .feature-card:hover { background: #fff; border-color: var(--accent); box-shadow: 0 25px 50px rgba(0,0,0,0.05); }
 
-        /* زر التواصل */
         .reveal-pill { position: relative; width: 60px; height: 60px; background: #000; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: 0.6s cubic-bezier(0.19, 1, 0.22, 1); margin: 30px auto; }
         .reveal-pill span { opacity: 0; position: absolute; white-space: nowrap; font-weight: bold; font-family: 'Inter', sans-serif; }
         .reveal-pill:hover { width: 340px; border-radius: 15px; background: var(--accent); }
@@ -101,30 +95,33 @@
 
     <section id="specs" class="bg-gray-50 rounded-[60px] mx-6">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-black mb-16 ar-text">المواصفات الهندسية</h2>
-            <h2 class="text-4xl font-black mb-16 en-text">Engineering Specs</h2>
+            <h2 class="text-4xl font-black mb-16 ar-text">المواصفات الهندسية للعبوات</h2>
+            <h2 class="text-4xl font-black mb-16 en-text">Cartridge Engineering Specs</h2>
             
             <div class="grid md:grid-cols-3 gap-10">
                 <div class="feature-card">
+                    <i class="fa-solid fa-vial text-3xl mb-6 text-purple-600"></i>
+                    <h4 class="text-xl font-bold mb-4 ar-text">سعة العبوة</h4><h4 class="text-xl font-bold mb-4 en-text">Cartridge Volume</h4>
+                    <p class="text-3xl font-black">180 ML</p>
+                    <p class="mt-2 opacity-50 text-sm ar-text">حجم السائل الصافي داخل كل عبوة ذكية.</p>
+                    <p class="mt-2 opacity-50 text-sm en-text">Net liquid volume per smart cartridge.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fa-solid fa-ruler-combined text-3xl mb-6 text-purple-600"></i>
+                    <h4 class="text-xl font-bold mb-4 ar-text">أبعاد العبوة</h4><h4 class="text-xl font-bold mb-4 en-text">Cartridge Dimensions</h4>
+                    <div class="flex flex-col">
+                        <p class="text-3xl font-black uppercase">H: 200 <small class="text-sm">MM</small></p>
+                        <p class="text-3xl font-black uppercase">W: 60 <small class="text-sm">MM</small></p>
+                    </div>
+                    <p class="mt-2 opacity-50 text-sm ar-text">القياسات الدقيقة للخرطوشة القابلة للاستبدال.</p>
+                    <p class="mt-2 opacity-50 text-sm en-text">Precise measurements for replaceable cartridge.</p>
+                </div>
+                <div class="feature-card">
                     <i class="fa-solid fa-microchip text-3xl mb-6 text-purple-600"></i>
-                    <h4 class="text-xl font-bold mb-4 ar-text">دقة متناهية</h4><h4 class="text-xl font-bold mb-4 en-text">Precision</h4>
+                    <h4 class="text-xl font-bold mb-4 ar-text">دقة الضخ</h4><h4 class="text-xl font-bold mb-4 en-text">Dispensing Accuracy</h4>
                     <p class="text-3xl font-black">0.05 ML</p>
-                    <p class="mt-2 opacity-50 text-sm ar-text">دقة خلط المكونات عبر المضخات التمعجية.</p>
-                    <p class="mt-2 opacity-50 text-sm en-text">Blending accuracy via peristaltic pumps.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fa-solid fa-box text-3xl mb-6 text-purple-600"></i>
-                    <h4 class="text-xl font-bold mb-4 ar-text">السعة الاستيعابية</h4><h4 class="text-xl font-bold mb-4 en-text">Capacity</h4>
-                    <p class="text-3xl font-black">12 Cartridges</p>
-                    <p class="mt-2 opacity-50 text-sm ar-text">نظام الخراطيش الذكي لآلاف الاحتمالات.</p>
-                    <p class="mt-2 opacity-50 text-sm en-text">Smart cartridge system for infinite scents.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fa-solid fa-expand text-3xl mb-6 text-purple-600"></i>
-                    <h4 class="text-xl font-bold mb-4 ar-text">الأبعاد</h4><h4 class="text-xl font-bold mb-4 en-text">Dimensions</h4>
-                    <p class="text-3xl font-black">22x22x28 CM</p>
-                    <p class="mt-2 opacity-50 text-sm ar-text">تصميم هندسي مدمج ومثالي للمكاتب والمنازل.</p>
-                    <p class="mt-2 opacity-50 text-sm en-text">Compact design perfect for home and office.</p>
+                    <p class="mt-2 opacity-50 text-sm ar-text">دقة مجهرية تضمن جودة خلط العطور.</p>
+                    <p class="mt-2 opacity-50 text-sm en-text">Micro-precision for consistent fragrance blending.</p>
                 </div>
             </div>
         </div>
