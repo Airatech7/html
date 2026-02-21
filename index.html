@@ -68,6 +68,14 @@
     <i class="fa-solid fa-layer-group"></i>
     <span class="ar-text">المواصفات</span><span class="en-text">Specs</span>
 </div>
+<div onclick="scrollToSec('market')" class="nav-item">
+    <i class="fa-solid fa-chart-line"></i>
+    <span class="ar-text">السوق</span><span class="en-text">Market</span>
+</div>
+<div onclick="scrollToSec('business-model')" class="nav-item">
+    <i class="fa-solid fa-hand-holding-dollar"></i>
+    <span class="ar-text">الأرباح</span><span class="en-text">Model</span>
+</div>
 <div onclick="scrollToSec('team')" class="nav-item">
     <i class="fa-solid fa-user-gear"></i>
     <span class="ar-text">الفريق</span><span class="en-text">Team</span>
@@ -192,6 +200,36 @@
         </div>
     </div>
 </section>
+    <section id="market" class="bg-gray-900 text-white py-24">
+    <div class="max-w-7xl mx-auto px-8">
+        <div class="text-center mb-16">
+            <span class="text-purple-400 font-black tracking-widest text-xs uppercase mb-4 block">تحليل السوق</span>
+            <h2 class="text-4xl md:text-5xl font-black ar-text">فرصة بمليارات الريالات</h2>
+            <h2 class="text-4xl md:text-5xl font-black en-text">A Multi-Billion SAR Opportunity</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 text-center">
+            <div class="p-10 rounded-[40px] bg-white/5 border border-white/10">
+                <h4 class="text-purple-400 font-bold mb-2">TAM</h4>
+                <p class="text-4xl font-black mb-4">6B <small class="text-sm">SAR</small></p>
+                <p class="text-gray-400 text-sm ar-text">إجمالي سوق العطور السنوي في المملكة.</p>
+                <p class="text-gray-400 text-sm en-text">Total annual fragrance market in KSA.</p>
+            </div>
+            <div class="p-10 rounded-[40px] bg-white/5 border border-white/10 scale-110 border-purple-500/30">
+                <h4 class="text-purple-400 font-bold mb-2">SAM</h4>
+                <p class="text-4xl font-black mb-4">1.2B <small class="text-sm">SAR</small></p>
+                <p class="text-gray-400 text-sm ar-text">سوق تقنيات التجميل الذكية المستهدف.</p>
+                <p class="text-gray-400 text-sm en-text">Serviceable Beauty-Tech market size.</p>
+            </div>
+            <div class="p-10 rounded-[40px] bg-white/5 border border-white/10">
+                <h4 class="text-purple-400 font-bold mb-2">SOM</h4>
+                <p class="text-4xl font-black mb-4">5%</p>
+                <p class="text-gray-400 text-sm ar-text">هدفنا للاستحواذ خلال أول 3 سنوات.</p>
+                <p class="text-gray-400 text-sm en-text">Our 3-year market share target.</p>
+            </div>
+        </div>
+    </div>
+</section>
     <section id="specs" class="bg-gray-50 rounded-[60px] mx-6">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-4xl font-black mb-16 ar-text">المواصفات الهندسية للعبوات</h2>
@@ -225,7 +263,37 @@
             </div>
         </div>
     </section>
-
+<section id="business-model" class="py-24">
+    <div class="max-w-7xl mx-auto px-8">
+        <h2 class="text-4xl font-black mb-16 text-center ar-text">كيف نحقق الأرباح؟</h2>
+        <h2 class="text-4xl font-black mb-16 text-center en-text">Revenue Model</h2>
+        
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="flex gap-6 items-start">
+                <div class="w-16 h-16 bg-purple-100 text-purple-600 rounded-2xl flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-microchip text-2xl"></i>
+                </div>
+                <div>
+                    <h4 class="text-xl font-black mb-2 ar-text">بيع الأجهزة (Hardware)</h4>
+                    <h4 class="text-xl font-black mb-2 en-text">Device Sales</h4>
+                    <p class="text-gray-500 ar-text">بيع أجهزة OZO للأفراد والفنادق والشركات (B2B & B2C).</p>
+                    <p class="text-gray-500 en-text">Selling OZO units to homes, hotels, and offices.</p>
+                </div>
+            </div>
+            <div class="flex gap-6 items-start">
+                <div class="w-16 h-16 bg-black text-white rounded-2xl flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-sync text-2xl"></i>
+                </div>
+                <div>
+                    <h4 class="text-xl font-black mb-2 ar-text">عائدات دورية (Recurring)</h4>
+                    <h4 class="text-xl font-black mb-2 en-text">Consumable Revenue</h4>
+                    <p class="text-gray-500 ar-text">بيع عبوات إعادة التعبئة (Cartridges) بنموذج اشتراك شهري.</p>
+                    <p class="text-gray-500 en-text">Subscription-based model for perfume cartridges.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
     <section id="team">
         <div class="max-w-5xl mx-auto text-center">
             <h2 class="text-4xl font-black mb-20 ar-text">الفريق القيادي</h2>
