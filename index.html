@@ -596,52 +596,86 @@
     import * as THREE from 'https://cdn.skypack.dev/three@0.129.0';
     import { OrbitControls } from 'https://cdn.skypack.dev/three@0.129.0/examples/jsm/controls/OrbitControls.js';
 
-    const container = document.getElementById('ozo-3d-container');
-    if (container) {
+    function initOZO() {
+        const container = document.getElementById('ozo-3d-container');
+        if (!container) return;
+
         const scene = new THREE.Scene();
-        // كاميرا أبعد قليلاً عشان ما يجي الجهاز بوجه المستخدم
-        const camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 1000);
-        
+        const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
         renderer.setSize(container.clientWidth, container.clientHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
         container.appendChild(renderer.domElement);
 
-        // شكل الأسطوانة (صغرت الحجم لـ 0.8 بدل 1)
-        const geometry = new THREE.CylinderGeometry(0.8, 0.8, 2.2, 64);
-        const material = new THREE.MeshStandardMaterial({ 
-            color: 0x111111, 
-            metalness: 0.8, 
-            roughness: 0.2 
+        // المجموعة الرئيسية للجهاز
+        const ozoGroup = new THREE.Group();
+
+        // 1. الجسم الخارجي (أبعاد 200 طولي و 60 عرضي كنسبة 2.0 و 0.6)
+        const outerGeo = new THREE.CylinderGeometry(0.6, 0.6, 2.0, 64, 1, true); // true تجعله مفتوح
+        const outerMat = new THREE.MeshStandardMaterial({ 
+            color: 0x050505, 
+            metalness: 1, 
+            roughness: 0.1, 
+            side: THREE.DoubleSide,
+            transparent: true,
+            opacity: 0.9 
         });
-        const device = new THREE.Mesh(geometry, material);
-        scene.add(device);
+        const outerShell = new THREE.Mesh(outerGeo, outerMat);
+        ozoGroup.add(outerShell);
 
-        // إضاءة مركزة
-        const light = new THREE.DirectionalLight(0x8b5cf6, 2);
-        light.position.set(2, 2, 5);
-        scene.add(light);
-        scene.add(new THREE.AmbientLight(0xffffff, 0.6));
+        // 2. إضافة "خراطيش" داخلية (12 أنبوب صغير)
+        for(let i=0; i<12; i++) {
+            const cartridgeGeo = new THREE.CylinderGeometry(0.05, 0.05, 1.2, 16);
+            const cartridgeMat = new THREE.MeshStandardMaterial({ 
+                color: 0x8b5cf6, // لون بنفسجي OZO
+                emissive: 0x8b5cf6,
+                emissiveIntensity: 0.5
+            });
+            const cartridge = new THREE.Mesh(cartridgeGeo, cartridgeMat);
+            
+            // توزيع الأنابيب بشكل دائري داخل الجهاز
+            const angle = (i / 12) * Math.PI * 2;
+            cartridge.position.set(Math.cos(angle) * 0.3, 0, Math.sin(angle) * 0.3);
+            ozoGroup.add(cartridge);
+        }
 
-        camera.position.z = 6;
+        // 3. إضافة "الشاشة" في جهة واحدة
+        const screenGeo = new THREE.PlaneGeometry(0.4, 0.8);
+        const screenMat = new THREE.MeshStandardMaterial({ 
+            color: 0x000000, 
+            emissive: 0x444444,
+            side: THREE.DoubleSide 
+        });
+        const screen = new THREE.Mesh(screenGeo, screenMat);
+        screen.position.set(0, 0, 0.61); // في واجهة الجهاز
+        ozoGroup.add(screen);
+
+        scene.add(ozoGroup);
+
+        // إضاءة قوية لإبراز التفاصيل
+        const light1 = new THREE.PointLight(0xffffff, 2);
+        light1.position.set(5, 5, 5);
+        scene.add(light1);
+
+        const light2 = new THREE.PointLight(0x8b5cf6, 3); // إضاءة بنفسجية داخلية
+        light2.position.set(-5, -5, 2);
+        scene.add(light2);
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+
+        camera.position.z = 5;
         const controls = new OrbitControls(camera, renderer.domElement);
-        controls.enableZoom = false;
-        controls.enablePan = false; // يمنع تحريك الجهاز بعيد عن المركز
+        controls.enableDamping = true;
 
         function animate() {
             requestAnimationFrame(animate);
-            device.rotation.y += 0.005;
+            ozoGroup.rotation.y += 0.005; // دوران تلقائي
+            controls.update();
             renderer.render(scene, camera);
         }
         animate();
-
-        // حل مشكلة التمدد عند تغيير حجم الشاشة
-        window.addEventListener('resize', () => {
-            camera.aspect = container.clientWidth / container.clientHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(container.clientWidth, container.clientHeight);
-        });
     }
+
+    window.onload = initOZO;
 </script>
 </body>
 </html>
