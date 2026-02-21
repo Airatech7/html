@@ -3,191 +3,161 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OZO | Investor Deck</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&family=Inter:wght@300;500;800&display=swap" rel="stylesheet">
+    <title>OZO | القمة الهندسية</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&family=Inter:wght@400;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        :root { --bg: #ffffff; --accent: #7c3aed; --text: #000000; --gray: #fbfbfd; }
-        body { background: var(--bg); color: var(--text); font-family: 'Cairo', sans-serif; scroll-behavior: smooth; margin: 0; transition: background 0.5s; }
-        [lang="en"] { font-family: 'Inter', sans-serif; direction: ltr; }
+        :root { --accent: #8b5cf6; --dark: #0a0a0a; --glass: rgba(255, 255, 255, 0.03); }
+        body { background: #fff; color: var(--dark); font-family: 'Cairo', sans-serif; overflow-x: hidden; transition: 0.5s; }
+        [lang="en"] { font-family: 'Inter', sans-serif; }
         
-        /* نظام اللغات */
+        /* تأثيرات ثورية */
+        .hero-gradient { background: radial-gradient(circle at center, #f5f3ff 0%, #fff 70%); }
+        .patent-shield { background: linear-gradient(135deg, #000 0%, #222 100%); border: 1px solid #333; }
         .lang-node { display: none; }
         body[lang="ar"] .ar { display: block; }
         body[lang="en"] .en { display: block; }
 
-        /* ستايل الملاحة */
-        .nav-link { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: #888; transition: 0.3s; position: relative; }
-        .nav-link:hover, .nav-link.active { color: var(--text); }
-        .nav-link.active::after { content: ''; position: absolute; bottom: -5px; left: 0; width: 100%; height: 2px; background: var(--accent); }
+        /* الأيقونات المخفية المطورة */
+        .secret-contact { width: 50px; height: 50px; border-radius: 50%; background: #000; display: flex; align-items: center; justify-content: center; color: #fff; transition: 0.8s cubic-bezier(0.22, 1, 0.36, 1); cursor: pointer; position: relative; }
+        .secret-contact:hover { width: 300px; border-radius: 15px; background: var(--accent); }
+        .secret-contact span { opacity: 0; position: absolute; white-space: nowrap; transition: 0.4s; pointer-events: none; }
+        .secret-contact:hover span { opacity: 1; }
 
-        /* الكروت والجماليات */
-        .glass-card { background: var(--gray); border: 1px solid #f0f0f0; border-radius: 40px; padding: 50px; transition: 0.5s; }
-        .glass-card:hover { transform: translateY(-10px); border-color: var(--accent); box-shadow: 0 20px 40px rgba(0,0,0,0.03); }
-        .badge { background: #000; color: #fff; padding: 6px 16px; border-radius: 50px; font-size: 10px; font-weight: 900; letter-spacing: 1px; }
-
-        /* زر التواصل السحري */
-        .reveal-btn { position: relative; width: 60px; height: 60px; background: #000; color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1); overflow: hidden; margin: 0 auto; }
-        .reveal-btn span { display: none; margin-right: 15px; font-weight: 800; font-size: 14px; }
-        .reveal-btn:hover { width: 320px; border-radius: 40px; background: var(--accent); }
-        .reveal-btn:hover span { display: inline; }
-
-        section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; padding: 100px 24px; }
+        /* محاكي الخلط (Interactive Element) */
+        .mixer-blob { width: 100px; height: 100px; background: var(--accent); filter: blur(40px); opacity: 0.3; position: absolute; animation: float 6s infinite; }
+        @keyframes float { 0%, 100% { transform: translate(0,0); } 50% { transform: translate(20px, 40px); } }
     </style>
 </head>
 <body lang="ar">
 
-    <nav class="fixed w-full z-50 px-10 py-6 flex justify-between items-center bg-white/80 backdrop-blur-xl border-b border-gray-100">
-        <img src="logo.png" alt="OZO" class="h-8 md:h-10">
-        <div class="hidden lg:flex gap-10">
-            <a href="#hero" class="nav-link active"><span class="ar">البداية</span><span class="en">Start</span></a>
-            <a href="#vision" class="nav-link"><span class="ar">الرؤية والمشكلة</span><span class="en">Vision</span></a>
-            <a href="#market" class="nav-link"><span class="ar">السوق</span><span class="en">Market</span></a>
-            <a href="#team" class="nav-link"><span class="ar">الفريق</span><span class="en">Team</span></a>
-            <a href="#invest" class="nav-link"><span class="ar">الاستثمار</span><span class="en">Investment</span></a>
+    <nav class="fixed w-full z-50 px-8 py-4 flex justify-between items-center bg-white/70 backdrop-blur-md border-b border-gray-100">
+        <img src="logo.png" alt="OZO" class="h-10 hover:scale-105 transition">
+        <div class="hidden md:flex gap-10 items-center">
+            <a href="#vision" class="text-[10px] font-black uppercase tracking-widest ar">الرؤية</a>
+            <a href="#vision" class="text-[10px] font-black uppercase tracking-widest en">Vision</a>
+            <a href="#team" class="text-[10px] font-black uppercase tracking-widest ar">الفريق</a>
+            <a href="#team" class="text-[10px] font-black uppercase tracking-widest en">Team</a>
+            <a href="#invest" class="text-[10px] font-black uppercase tracking-widest ar text-purple-600">فرصة الاستثمار</a>
+            <a href="#invest" class="text-[10px] font-black uppercase tracking-widest en text-purple-600">Invest</a>
+            <button onclick="toggleLang()" class="bg-black text-white px-4 py-1.5 rounded-full text-[9px] font-bold">AR | EN</button>
         </div>
-        <button onclick="toggleLang()" class="px-6 py-2 border-2 border-black rounded-full text-[10px] font-black hover:bg-black hover:text-white transition uppercase tracking-widest">AR | EN</button>
     </nav>
 
-    <section id="hero" class="text-center">
-        <div class="badge mb-6 ar">براءة اختراع سعودية</div>
-        <div class="badge mb-6 en">Saudi Patent Technology</div>
-        <h1 class="text-7xl md:text-9xl font-black tracking-tighter leading-[0.8] mb-10">
-            <span class="ar lang-node">مستقبل<br><span class="text-purple-600">العطور</span> الرقمية</span>
-            <span class="en lang-node">Future of<br><span class="text-purple-600">Digital</span> Scent</span>
+    <section class="min-h-screen flex flex-col justify-center items-center text-center px-6 hero-gradient relative">
+        <div class="mixer-blob"></div>
+        <div class="patent-shield text-white px-6 py-2 rounded-full text-[10px] font-bold mb-8 tracking-[0.2em] animate-pulse">
+            PATENTED TECH: SA 1020261391
+        </div>
+        <h1 class="text-6xl md:text-9xl font-black mb-6 tracking-tighter leading-none">
+            <span class="ar lang-node">أتمتة <br><span class="text-purple-600 italic">الحواس</span></span>
+            <span class="en lang-node">Sensory <br><span class="text-purple-600 italic">Automation</span></span>
         </h1>
-        <p class="max-w-2xl mx-auto text-xl opacity-40 font-light leading-relaxed ar lang-node">نحن في OZO لا نبيع زجاجات عطر، نحن نبني منصة ذكية تدمج الحواس بالذكاء الاصطناعي لإنهاء هدر الصناعة التقليدية.</p>
-        <p class="max-w-2xl mx-auto text-xl opacity-40 font-light leading-relaxed en lang-node">At OZO, we don't sell bottles; we build a smart platform merging senses with AI to end traditional industry waste.</p>
+        <p class="max-w-xl opacity-50 text-lg ar lang-node">نحن في OZO نقود الثورة الصناعية الثالثة للعطور؛ حيث تلتقي الدقة الميكانيكية بالذكاء الاصطناعي لإنهاء عصر الهدر.</p>
+        <p class="max-w-xl opacity-50 text-lg en lang-node">OZO leads the 3rd industrial revolution of fragrance; where mechanical precision meets AI to end the era of waste.</p>
     </section>
 
-    <section id="vision" class="bg-gray-50">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10">
-            <div class="glass-card">
-                <h3 class="text-purple-600 font-bold text-xs uppercase tracking-widest mb-6">The Problem / المشكلة</h3>
-                <h2 class="text-4xl font-black mb-6 ar">هدر مادي وجمود صناعي</h2>
-                <h2 class="text-4xl font-black mb-6 en">Material Waste & Stagnation</h2>
-                <p class="opacity-60 leading-relaxed ar">يعاني سوق العطور من تكرار المنتجات التقليدية الجامدة. العميل يشتري زجاجات متعددة لا تلبي مزاجه المتغير فورياً، مما يسبب هدراً مادياً وبيئياً.</p>
-                <p class="opacity-60 leading-relaxed en">The perfume market suffers from rigid traditional products. Customers buy multiple bottles that don't meet their changing moods, causing material and environmental waste.</p>
-            </div>
-            <div class="glass-card bg-black text-white">
-                <h3 class="text-purple-400 font-bold text-xs uppercase tracking-widest mb-6">The Solution / الحل</h3>
-                <h2 class="text-4xl font-black mb-6 ar">منظومة OZO الذكية</h2>
-                <h2 class="text-4xl font-black mb-6 en">OZO Smart Ecosystem</h2>
-                <p class="opacity-60 leading-relaxed ar">جهاز يدمج الذكاء الاصطناعي بإنترنت الأشياء (IoT)، يتيح تخليق آلاف الروائح مخصصة فورياً عبر خراطيش دقيقة، موفراً بديلاً صناعياً مستداماً.</p>
-                <p class="opacity-60 leading-relaxed en">An IoT-AI integrated device enabling instant creation of thousands of custom scents via precision cartridges, providing a sustainable industrial alternative.</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="market">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-20">
-                <h2 class="text-5xl font-black uppercase tracking-tighter">Market Potential</h2>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center p-10">
-                    <h4 class="text-6xl font-black mb-2">6B+</h4>
-                    <p class="text-xs uppercase opacity-40 tracking-widest ar">حجم السوق السعودي سنوياً</p>
-                    <p class="text-xs uppercase opacity-40 tracking-widest en">KSA Market Size (Annually)</p>
-                </div>
-                <div class="text-center p-10 border-x border-gray-100">
-                    <h4 class="text-6xl font-black mb-2">15%</h4>
-                    <p class="text-xs uppercase opacity-40 tracking-widest ar">معدل نمو الـ Beauty Tech</p>
-                    <p class="text-xs uppercase opacity-40 tracking-widest en">Beauty Tech CAGR</p>
-                </div>
-                <div class="text-center p-10">
-                    <h4 class="text-6xl font-black mb-2">5%</h4>
-                    <p class="text-xs uppercase opacity-40 tracking-widest ar">الحصة المستهدفة (3 سنوات)</p>
-                    <p class="text-xs uppercase opacity-40 tracking-widest en">Target SOM (3 Years)</p>
-                </div>
-            </div>
-            <div class="mt-20 glass-card">
-                <h3 class="font-black mb-8 ar text-center">التوسع الاستراتيجي</h3>
-                <h3 class="font-black mb-8 en text-center">Strategic Expansion</h3>
-                <div class="grid md:grid-cols-3 gap-6 text-sm text-center">
-                    <div class="p-6 bg-white rounded-3xl border">السيارات الذكية</div>
-                    <div class="p-6 bg-white rounded-3xl border">المنازل الذكية</div>
-                    <div class="p-6 bg-white rounded-3xl border">التسويق الحسي</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="team" class="bg-gray-50">
-        <div class="max-w-5xl mx-auto">
-            <h2 class="text-4xl font-black text-center mb-16 ar">أعضاء فريق العمل الأساسي</h2>
-            <h2 class="text-4xl font-black text-center mb-16 en">Core Engineering Team</h2>
-            <div class="grid md:grid-cols-2 gap-10">
-                <div class="glass-card bg-white text-center">
-                    <div class="w-20 h-20 bg-black text-white rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-microchip text-3xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-black">م. إسماعيل إبراهيم الثقفي</h3>
-                    <p class="text-purple-600 font-bold mt-2 ar">مبتكر الفكرة - هندسة ميكانيكية</p>
-                    <p class="text-purple-600 font-bold mt-2 en">Idea Innovator - Mechanical Eng.</p>
-                    <p class="text-xs opacity-50 mt-4 leading-relaxed ar">مسؤول عن تطوير الأنظمة التمعجية وبراءة الاختراع SA 1020261391.</p>
-                    <p class="text-xs opacity-50 mt-4 leading-relaxed en">Responsible for Peristaltic systems & Patent SA 1020261391.</p>
-                </div>
-                <div class="glass-card bg-white text-center">
-                    <div class="w-20 h-20 bg-gray-200 text-black rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-bolt text-3xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-black">م. خالد سامي الثقفي</h3>
-                    <p class="text-purple-600 font-bold mt-2 ar">هندسة كهربائية - أنظمة التحكم</p>
-                    <p class="text-purple-600 font-bold mt-2 en">Electrical Eng. - Control Systems</p>
-                    <p class="text-xs opacity-50 mt-4 leading-relaxed ar">خبير الدوائر الإلكترونية والربط التقني بخوارزميات الذكاء الاصطناعي.</p>
-                    <p class="text-xs opacity-50 mt-4 leading-relaxed en">Expert in circuitry and technical AI integration.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="invest">
+    <section id="vision" class="py-32 px-10 bg-black text-white overflow-hidden relative">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
-            <div class="space-y-10">
-                <h2 class="text-6xl font-black ar">خطة التمويل <br>المطلوب</h2>
-                <h2 class="text-6xl font-black en">Required <br>Funding Plan</h2>
-                <div class="p-10 border-l-8 border-purple-600 bg-gray-50 rounded-r-3xl">
-                    <p class="text-7xl font-black">3,000,000 <span class="text-xl">SAR</span></p>
-                    <p class="text-xs uppercase tracking-[0.3em] opacity-40 mt-4">Total Seed Investment</p>
-                </div>
-                <div class="space-y-4">
-                    <div class="flex justify-between items-center p-4 bg-gray-50 rounded-2xl">
-                        <span class="ar">تجهيز المصنع وخطوط الإنتاج</span><span class="en">Production Lines</span>
-                        <span class="font-black">60%</span>
+            <div>
+                <h2 class="text-5xl font-black mb-10 ar">لماذا الآن؟</h2>
+                <h2 class="text-5xl font-black mb-10 en">Why Now?</h2>
+                <div class="space-y-12">
+                    <div class="border-l-2 border-purple-500 pl-8">
+                        <h4 class="text-3xl font-bold">6,000,000,000+ SAR</h4>
+                        <p class="opacity-40 ar">حجم السوق المحلي المعطل بالمنتجات التقليدية الجامدة.</p>
+                        <p class="opacity-40 en">KSA market size currently disrupted by rigid traditional products.</p>
                     </div>
-                    <div class="flex justify-between items-center p-4 bg-gray-50 rounded-2xl">
-                        <span class="ar">النموذج الأولي النهائي</span><span class="en">Final Prototype</span>
-                        <span class="font-black">20%</span>
-                    </div>
-                    <div class="flex justify-between items-center p-4 bg-gray-50 rounded-2xl">
-                        <span class="ar">تطوير منصة الذكاء الاصطناعي</span><span class="en">AI Development</span>
-                        <span class="font-black">20%</span>
+                    <div class="border-l-2 border-gray-700 pl-8">
+                        <h4 class="text-3xl font-bold">15% CAGR</h4>
+                        <p class="opacity-40 ar">معدل نمو تقنيات التجميل الذكية (Beauty Tech).</p>
+                        <p class="opacity-40 en">Compound Annual Growth Rate of Beauty Tech.</p>
                     </div>
                 </div>
             </div>
-            <div class="glass-card">
+            <div class="bg-neutral-900 p-12 rounded-[50px] border border-neutral-800">
+                <h3 class="text-xl font-bold mb-6 ar">المشكلة التي نحلها:</h3>
+                <h3 class="text-xl font-bold mb-6 en">The Problem We Solve:</h3>
+                <p class="text-gray-400 leading-relaxed text-lg ar">
+                    "الهدر المادي في زجاجات العطور التي لا تلبي مزاج المستخدم المتغير. OZO يقدم آلاف الخيارات في جهاز واحد مستدام."
+                </p>
+                <p class="text-gray-400 leading-relaxed text-lg en">
+                    "Material waste in perfume bottles that fail to meet changing moods. OZO offers thousands of options in one sustainable device."
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="team" class="py-32 px-10 max-w-7xl mx-auto">
+        <h2 class="text-center text-4xl font-black mb-20 ar">العقول خلف الابتكار</h2>
+        <h2 class="text-center text-4xl font-black mb-20 en">The Minds Behind Innovation</h2>
+        <div class="grid md:grid-cols-2 gap-10">
+            <div class="group p-12 bg-gray-50 rounded-[40px] hover:bg-black hover:text-white transition-all duration-500">
+                <span class="text-[10px] font-black opacity-30 uppercase tracking-widest">Mechanical Engineering</span>
+                <h3 class="text-3xl font-black mt-4">م. إسماعيل إبراهيم الثقفي</h3>
+                <p class="mt-4 opacity-60 ar">المبتكر والمشرف على الأنظمة التمعجية وبراءة الاختراع وتحويلها لمنتج صناعي.</p>
+                <p class="mt-4 opacity-60 en">Innovator and supervisor of peristaltic systems and patent industrialization.</p>
+            </div>
+            <div class="group p-12 bg-gray-50 rounded-[40px] hover:bg-black hover:text-white transition-all duration-500">
+                <span class="text-[10px] font-black opacity-30 uppercase tracking-widest">Electrical Engineering</span>
+                <h3 class="text-3xl font-black mt-4">م. خالد سامي الثقفي</h3>
+                <p class="mt-4 opacity-60 ar">خبير أنظمة التحكم والدوائر الإلكترونية والربط التقني بإنترنت الأشياء.</p>
+                <p class="mt-4 opacity-60 en">Control systems expert, electronic circuitry, and IoT integration specialist.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="invest" class="py-32 px-10 bg-neutral-50">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div class="relative h-[400px]">
                 <canvas id="investChart"></canvas>
             </div>
+            <div class="space-y-8">
+                <h2 class="text-5xl font-black ar">استثمار المستقبل</h2>
+                <h2 class="text-5xl font-black en">Future Investment</h2>
+                <div class="flex items-baseline gap-4">
+                    <span class="text-7xl font-black">3.0M</span>
+                    <span class="text-xl font-bold opacity-30">SAR / SEED ROUND</span>
+                </div>
+                <ul class="space-y-6">
+                    <li class="flex items-center gap-4">
+                        <div class="w-3 h-3 bg-black rounded-full"></div>
+                        <p class="ar text-lg"><b>60%</b> خطوط الإنتاج وتجهيز المصنع</p>
+                        <p class="en text-lg"><b>60%</b> Production Lines & Factory setup</p>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <div class="w-3 h-3 bg-purple-600 rounded-full"></div>
+                        <p class="ar text-lg"><b>20%</b> تطوير منصة الذكاء الاصطناعي</p>
+                        <p class="en text-lg"><b>20%</b> AI Platform Development</p>
+                    </li>
+                    <li class="flex items-center gap-4">
+                        <div class="w-3 h-3 bg-gray-300 rounded-full"></div>
+                        <p class="ar text-lg"><b>20%</b> النموذج الأولي النهائي (Prototype)</p>
+                        <p class="en text-lg"><b>20%</b> Final Prototype</p>
+                    </li>
+                </ul>
+            </div>
         </div>
     </section>
 
-    <footer id="contact" class="py-32 text-center border-t border-gray-100">
-        <h2 class="text-3xl font-black mb-16 ar">تواصل مباشر مع المؤسسين</h2>
-        <h2 class="text-3xl font-black mb-16 en">Direct Founder Contact</h2>
-        <div class="flex flex-col md:flex-row justify-center gap-10">
-            <div class="reveal-btn">
-                <i class="fas fa-envelope"></i>
-                <span>ismail.althagafi92@gmail.com</span>
+    <footer class="py-32 text-center border-t border-gray-100 bg-white">
+        <h2 class="text-2xl font-black mb-12 ar">فتح قنوات التواصل</h2>
+        <h2 class="text-2xl font-black mb-12 en">Open Communication</h2>
+        <div class="flex flex-col md:flex-row justify-center gap-8">
+            <div class="secret-contact mx-auto md:mx-0">
+                <i class="fas fa-paper-plane"></i>
+                <span class="ar">ismail.althagafi92@gmail.com</span>
+                <span class="en">ismail.althagafi92@gmail.com</span>
             </div>
-            <div class="reveal-btn">
+            <div class="secret-contact mx-auto md:mx-0">
                 <i class="fas fa-phone"></i>
-                <span>+966 51 015 0055</span>
+                <span class="ar">+966 51 015 0055</span>
+                <span class="en">+966 51 015 0055</span>
             </div>
         </div>
-        <p class="mt-32 text-[10px] opacity-20 uppercase tracking-[1em]">Riyadh • Kingdom of Saudi Arabia • OZO 2026</p>
+        <p class="mt-32 text-[9px] opacity-20 uppercase tracking-[1em] font-bold">OZO Engineering • Riyadh 2026</p>
     </footer>
 
     <script>
@@ -198,42 +168,30 @@
             updateChart();
         }
 
-        // الرسم البياني لتوزيع التمويل
-        let investChart;
+        let chart;
         function updateChart() {
             const ctx = document.getElementById('investChart').getContext('2d');
-            if(investChart) investChart.destroy();
-            investChart = new Chart(ctx, {
+            if (chart) chart.destroy();
+            const isAr = document.body.lang === 'ar';
+            chart = new Chart(ctx, {
                 type: 'doughnut',
                 data: {
-                    labels: document.body.lang === 'ar' ? ['إنتاج', 'نموذج', 'ذكاء اصطناعي'] : ['Production', 'Prototype', 'AI Dev'],
+                    labels: isAr ? ['إنتاج', 'ذكاء اصطناعي', 'نموذج'] : ['Production', 'AI', 'Prototype'],
                     datasets: [{
                         data: [60, 20, 20],
-                        backgroundColor: ['#000', '#7c3aed', '#e5e7eb'],
+                        backgroundColor: ['#000', '#8b5cf6', '#e5e7eb'],
                         borderWidth: 0,
-                        hoverOffset: 20
+                        hoverOffset: 30
                     }]
                 },
                 options: {
                     cutout: '80%',
-                    plugins: { legend: { position: 'bottom', labels: { font: { family: 'Cairo', weight: 'bold' } } } }
+                    plugins: { legend: { display: false } },
+                    animation: { animateScale: true }
                 }
             });
         }
         updateChart();
-
-        // تفعيل الروابط عند التمرير
-        window.addEventListener('scroll', () => {
-            let fromTop = window.scrollY + 200;
-            document.querySelectorAll('.nav-link').forEach(link => {
-                let section = document.querySelector(link.hash);
-                if (section.offsetTop <= fromTop && section.offsetTop + section.offsetHeight > fromTop) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-        });
     </script>
 </body>
 </html>
